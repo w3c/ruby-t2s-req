@@ -1,47 +1,697 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>MyNote</title>
+    <title>Text to Speech of Electronic Documents Containing Ruby: User Requirements</title>
     <script
       defer
       class="remove"
       src="https://www.w3.org/Tools/respec/respec-w3c"
     ></script>
     <script class="remove">
-      // See: https://respec.org/docs/ for all configuration options
       var respecConfig = {
-        shortName: "my-note",
+        shortName: "ruby-t2s-req",
         specStatus: "ED", // "WG-NOTE"
         noRecTrack: true,
-        edDraftURI: "https://w3c.github.io/mynote/",
+        edDraftURI: "https://w3c.github.io/ruby-t2s-req/",
         editors: [
-          {
-            name: "Victor Hugo",
-            w3cid: "0000",
-          },
+          { name: "Makoto Murata", w3cid: "32937", },
         ],
-        group: "webperfs", // find your group at https://respec.org/w3c/groups/
+        group: "i18n",
         github: {
-          repoURL: "w3c/mynote",
-          branch: "master",
+          repoURL: "w3c/ruby-t2s-req",
+          branch: "gh-pages",
         },
+        localBiblio: {
+          JISX4051: {
+            title: "Formatting rules for Japanese documents (&#12302;&#26085;&#26412;&#35486;&#25991;&#26360;&#12398;&#32068;&#29256;&#26041;&#27861;&#12303;; JIS X 4051)",
+            publisher: "Japanese Standards Association",
+            date: "2004",
+            id: "JIS X 4051:2004",
+          },
+          ACCESSIBLE_E_BOOKS: {
+            title: "Guidelines for creating accessible e-books for text-to-speech",
+            publisher: "the Ministry of Internal Affairs and Communications",
+            date: "2015",
+            href: "https://www.soumu.go.jp/main_content/000354698.pdf",
+          },
+        },
+        xref: true,
+        postProcess: [  ],
       };
     </script>
+    <style>
+      .todo {
+        background-color: #BBEFFC;
+      }
+    </style>
   </head>
   <body>
     <section id="abstract">
-      <p>This is a Note.</p>
+      <p>This document describes user requirements for text to speech of electronic documents containing ruby.</p>
     </section>
     <section id="sotd">
-      <p>This is a placeholder document.</p>
+      <p></p>
     </section>
     <section id="purpose">
       <h2>Purpose</h2>
       <p>
-        This is a placeholder. Check the
-        <a href="https://respec.org/docs/">ReSpec documentation</a>.
+        We are concerned about issues around the text-to-speech of HTML documents and EPUB publications containing ruby. 
+        Although typographical characteristics of ruby are covered by [[?JLREQ]] and [[?simple-ruby]], 
+        text-to-speech issues have not been widely recognized. This document focuses on user requirements, 
+        while a companion document (now in Japanese only) focuses on implementation issues.
+      </p>
+      <p>
+        Section 2 enumerates the roles ruby plays in relation to base characters. 
+        Section 3 describes possible options for using base characters and/or ruby for the text-to-speech and discusses 
+        the pros and cons of each option. 
+        Section 4 shows ruby markup issues around the text-to-speech. 
+        Section 5 introduces alternative mechanisms (SSML and PLS). 
+        Section 6 describes the use of ruby in translating HTML or EPUB to braille.
+        And Section 7 provides a brief summary of the text-to-speech of Word documents and PDF documents containing ruby.
       </p>
     </section>
+
+    <section>
+      <h2>Roles of Ruby</h2>
+
+      <section>
+        <h3>Furigana</h3>
+        <p>
+          The primary use of ruby is to indicate how to read CJK ideographic characters 
+          (<dfn>furigana</dfn>, see also <a data-cite="JLREQ#term.furigana">JLReq terminology</a>).
+        </p>
+        <p>
+          Nowadays, it is not common to attach ruby to all CJK ideographic characters 
+          (<dfn>general ruby</dfn>, see also <a data-cite="JLREQ#term.general-ruby">JLReq terminology</a>).
+          Ruby is typically attached to difficult CJK ideographic characters only 
+          (<dfn>para ruby</dfn>, see also <a data-cite="JLREQ#term.para-ruby">JLReq terminology</a>).
+        </p>
+        <p>
+          Ruby is used in trade books, newspapers, textbooks, teaching materials, etc., but is rarely used in business documents.
+        </p>
+        <p>
+          Even for simple CJK ideographic characters, ruby may be added for some users who have particular 
+          difficulties with CJK ideographic characters 
+          (in electronic documents, it is easy to make ruby visible or invisible based on user preferences). 
+          Such ruby is called furigana-added-for-enhanced-accessibility.
+        </p>
+        <p>
+          Some simple CJK ideographic characters have more than one possible reading and thus require ruby for disambiguation.  
+          This is common for names of people and places. For example, "<span lang="ja">山崎</span>" (a person's name) may be read as 
+          "Yamazaki" or "Yamasaki". 
+        </p>
+        <p>
+          In the case of para ruby, ruby is often attached to the first occurrence of a CJK ideographic character, 
+          and not attached to the second and subsequent occurrences of the same character, 
+          probably because users should learn from the first occurrence.
+        </p>
+      </section>
+
+      <section>
+        <h3>Gikun</h3>
+        <p>
+          Especially in Japan, ruby is also used for indicating something different from the reading of a CJK ideographic character.
+          Such ruby is called <dfn>Gikun</dfn>.  Gikun tends to be used in light novels and comics. 
+        </p>
+        <p>
+          Here are some examples of Gikun:
+        </p>
+        <ul>
+          <li>
+            <span lang="ja"><ruby><rb>生命</rb><rt>いのち</rt></ruby></span> 
+            (the typical reading of <span lang="ja">生命</span> is SEIMEI rather than <span lang="ja">いのち</span> (INOCHI), 
+            where both <span lang="ja">生命</span> and <span lang="ja">いのち</span> mean "Life")
+          </li>
+          <li>
+            <span lang="ja"><ruby><rb>背景</rb><rt>バック</rt></ruby></span> 
+            (the typical reading of <span lang="ja">背景</span> is HAIKEI rather than <span lang="ja">バック</span> ("back"), 
+            which is an English translation)
+          </li>
+          <li>
+            <span lang="ja"><ruby><rb>牛乳</rb><rt>ミルク</rt></ruby></span> 
+            (the typical reading of <span lang="ja">牛乳</span> is GYUUNYUU rather than <span lang="ja">ミルク</span> ("milk"), 
+            which is an English translation)
+          </li>
+        </ul>
+        <p>
+          Even when Gikun is used for a compound word, it is unlikely to be repeated for later occurrences of the same word. 
+          Moreover, different [=GIKUN=] may be added for subsequent occurrences of the same word. 
+          For example, the next occurrence of <span lang="ja">生命</span> may well be 
+          <span lang="ja"><ruby><rb>生命</rb><rt>ライフ</rt></ruby></span>
+          where <span lang="ja">ライフ</span> ("life") is an English translation.
+        </p>
+      </section>
+
+      <section>
+        <h3>Unusual names of people and places</h3>
+        <p>
+          Unusual names of people in Japan are written in CJK ideographic characters but read as something completely 
+          different from the typical reading of the CJK ideographic characters.  
+          For example, <span lang="ja"><ruby><rb>男</rb><rt>あだむ</rt></ruby></span> is an unusual name, 
+          where <span lang="ja">男</span> (usually read as OTOKO) means "man" and <span lang="ja">あだむ</span> is "Adam" in Kana.
+        </p>
+        <p>
+          Character names in comics, animation and light novels are sometimes extremely difficult to read. 
+          Many of the character names in <a href="https://en.wikipedia.org/wiki/Demon_Slayer:_Kimetsu_no_Yaiba">Demon Slayer (Kimetsu no Yaiba)</a> 
+          fall into this category. 
+          For example, almost no one can read <span lang="ja">不死川 玄弥</span> as "Shinazugawa Gennya" from the beginning.
+        </p>
+        <p>
+          Names of places are sometimes hard to read for historical reasons. 
+          For example, <span lang="ja"><ruby><rb>神居古潭</rb><rt>かむいこたん</rt></ruby></span>, 
+          <span lang="ja"><ruby><rb>温根沼</rb><rt>おんねとう</rt></ruby></span>, 
+          <span lang="ja"><ruby><rb>音威子府</rb><rt>おといねっぷ</rt></ruby></span> 
+          are names of places in Hokkaido (the northern island of Japan). 
+          These names are hard to read since they came from <a href="https://en.wikipedia.org/wiki/Ainu_people#Language">the Ainu language</a>, 
+          which is totally different from the Japanese language.
+        </p>
+        <p>
+          In many cases, the first occurrence of an unusual name is accompanied by ruby but the other occurrences are not.
+        </p>
+      </section>
+
+      <section>
+        <h3>Interlinear notes</h3>
+        <p>
+          <dfn>Interlinear notes</dfn> look similar to ruby.  
+          A <a data-cite="JLREQ#n224">note in JLreq</a> introduces interlinear notes:
+        </p>
+        <aside class="note" title="Quoted note from JLReq" id="n20211101001">
+          Other than these styles of note, explanations of facts and persons in study aid books and history texts, 
+          and modern translations of Japanese classic texts are sometimes set between lines. 
+          These notes are called interlinear notes (see <a data-cite="JLREQ#fig3_2_8">Figure 241</a>).
+        </aside>
+        <p>
+          In the example shown in 
+          <a data-cite="JLREQ#fig3_2_8">a figure referenced in quoted note ("An example of a note in inter lines")</a>, 
+          <span lang="ja">徳川慶喜</span> (Tokugawa Yoshinobu) is accompanied by an interlinear note 
+          "1837-1913 <span lang="ja">江戸幕府最後の将軍</span>" (1837-1913 the last shogun of the Edo shogunate). 
+          Other examples are: a modern kana phrase as an interlinear note for a historical kana phrase, 
+          a standard Japanese expression as an interlinear note for an expression in a dialect, 
+          a modern CJK ideographic character as an interlinear note for a traditional CJK ideographic character, 
+          an English text chunk as an interlinear note for a Japanese text chunk, 
+          and an official name as an interlinear note for an abbreviated name.
+        </p>
+        <p>
+          One could argue that HTML ruby elements should not be used for representing interlinear notes 
+          (see <a href="https://lists.w3.org/Archives/Public/public-i18n-japanese/2021AprJun/0051.html">Kobayashi Sensei's mail in Japanese</a>). 
+          However, it is not difficult to imagine that ruby elements are actually used for representing interlinear notes.
+        </p>
+      </section>
+
+      <section>
+        <h3>Ruby to indicate the reading of a foreign phrase in language textbooks </h3>
+        <p>
+          In language textbooks, ruby is sometimes used to indicate the reading of a foreign phrase in hiragana or katakana. 
+          For example, a Chinese phrase <span lang="zh-hans">我去学校</span> may have <span lang="ja">ウオ チュー シュエシャオ</span> as ruby.
+        </p>
+      </section>
+
+      <section>
+        <h3>Double-sided Ruby</h3>
+        <p>
+          A sequence of base characters may be accompanied by two ruby text chunks. 
+          Typically, one of them is [=Furigana=] and the other is either a [=GIKUN=] or [=interlinear note=].  
+          In <a data-cite="JLREQ#fig2_3_12">an example in JLreq</a> 
+          ("An example of ruby attached to both sides of the base characters"), 
+          <span lang="ja">東南</span> is accompanied by <span lang="ja">たつみ</span> and <span lang="ja">とうなん</span>. 
+          Here <span lang="ja">東南</span> means "southeast", <span lang="ja">とうなん</span> (TOUNAN) is a furigana, 
+          and <span lang="ja">たつみ</span> (Tatsumi) is a [=GIKUN=], 
+          since <span lang="ja">辰巳</span> (read as <span lang="ja">たつみ</span>) means the same direction as <span lang="ja">東南</span>.
+        </p>
+        <figure id="f20211101001">
+          <img src="./img/rdr001.png" alt="" />
+          <figcaption><span lang="ja">東洋</span> has upper-side ruby <span lang="ja">オリエント</span> and lower-side ruby <span lang="ja">とうよう</span></figcaption>
+        </figure>
+        <p>
+          Here <span lang="ja">とうよう</span> is a [=furigana=] and <span lang="ja">オリエント</span> is a [=Gikun=].
+        </p>
+        <figure id="f20211101002">
+          <img src="./img/rdr002.png" alt="" />
+          <figcaption><span lang="ja">織田信長</span> has upper-side ruby "1534〜82" and lower-side ruby <span lang="ja">おだのぶなが</span></figcaption>
+        </figure>
+        <p>
+          Here <span lang="ja">おだのぶなが</span> is a [=furigana=] and "1534-82" is an [=interlinear note=].
+        </p>
+      </section>
+    </section>
+    
+    <section>
+      <h2>Which should be read aloud, base characters or ruby, or both?</h2>
+      <p>
+        There are three possible options: (1) both base characters and ruby, (2) ruby only, and (3) base characters only.
+      </p>
+
+      <section>
+        <h3>Reading aloud both base characters and ruby</h3>
+        <p>
+          In this option, base characters are read aloud first and ruby is then read aloud. 
+          Many implementations (screen readers, in particular) support this option only. 
+          For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "foo bar".
+        </p>
+
+        <section>
+          <h4>Furigana</h4>
+          <p>
+            The option of reading aloud both interferes with readers' understanding significantly. 
+            This is true for both group ruby (see also <a data-cite="JLREQ#term.group-ruby">JLReq terminology</a>) 
+            and mono ruby (see also <a data-cite="JLREQ#term.mono-ruby">JLReq terminology</a>). 
+          </p>
+          <p>
+            Consider an example from "The Rich Man and the Chicken" by <span lang="ja">小川未明</span> (OGAWA Mimei). 
+            Note that the mono ruby for <span lang="ja">新鮮</span> is expressed by two rt elements: 
+            one for <span lang="ja">新</span> and the other is for <span lang="ja">鮮</span>.
+          </p>
+          <section>
+            <h5>Original text</h5>
+            <p lang="ja">
+              <ruby><rb>鶏</rb><rt>にわとり</rt></ruby>でも<ruby><rb>飼</rb><rt>か</rt></ruby>って、
+              <ruby><rb>新</rb><rt>しん</rt><rb>鮮</rb><rt>せん</rt></ruby>な
+              <ruby>卵<rt>たまご</rt></ruby>を<ruby>産<rt>う</rt></ruby>まして
+              <ruby>食<rt>た</rt></ruby>べようと<ruby>思<rt>おも</rt></ruby>いました。
+            </p>
+            <p>
+              If there is no ruby, this should be read aloud as:<br/> 
+              <span lang="ja">にわとりでもかって、しんせんなたまごをうましてたべようとおもいました。</span>
+              (Niwatori demo katte shinsenna tamagowo umashite tabeyouto omoimashita.)
+            </p>
+            <p>
+              Translation in English: I thought that I should raise a hen so that I can eat fresh eggs.
+            </p>
+          </section>
+          <section>
+            <h5>Reading</h5>
+            <p>
+              The option of reading aloud both provides:<br/> 
+              <span lang="ja">にわとりにわとりでもかかって、しんしんせんせんなたまごたまごをううましてたたべようとおもおもいました。</span>
+              (Niwatoriniwatori demo kakatte shinshinsensenna tamagotamagowo uumashite tatabeyouto omoomoimashita.)
+            </p>
+            <p>
+              This reading does not make any sense at all.
+            </p>
+            <p>
+              Moreover, in some cases, reading both completely changes the meaning 
+              <span class="todo">(see <a href="http://www.asahi-net.or.jp/~eb2m-mrt/rubytest.html">examples</a>)</span>.
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <h4>Gikun</h4>
+          <p>
+            The option of reading aloud both is sensible.
+          </p>
+          <p>
+            <span lang="ja"><ruby><rb>生命</rb><rt>いのち</rt></ruby></span> is read aloud as "Seimei Inochi", 
+            where "Seimei" is a loan word from Chinese and "Inochi" is a native Japanese word.  Both means life.
+          </p>
+        </section>
+
+        <section>
+          <h4>Unusual names of people and places</h4>
+          <p>
+            The option of reading aloud both interferes with readers' understanding significantly. 
+          </p>
+          <p>
+            <span lang="ja"><ruby><rb>不死川玄弥</rb><rt>しなずがわげんや</rt></ruby></span> ("Fushikawa Genya") 
+            is read aloud as "Fushikawa Genya Shinazugawa Genya", which suggests two persons rather than one person.
+          </p>
+        </section>
+
+        <section>
+          <h4>Interlinear notes</h4>
+          <p>
+            The option of reading aloud both is sensible.
+          </p>
+          <p>
+            For example, <span lang="ja"><ruby><rb>徳川家康</rb><rt>1543-1616 江戸幕府最後の将軍</rt></ruby></span> 
+            is read aloud as "Tokugawa Ieyasu 1543-1616 Edo Bakufu Saigono Shougun", 
+            which means "Tokugawa Ieyasu 1543-1616, the last shogun of the Edo shogunate".        
+          </p>
+        </section>
+
+        <section>
+          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <p>
+            The option of reading aloud both interferes with readers' understanding significantly.
+          </p>
+          <p>
+            In the example of <span lang="zh-hans">我去学校</span>, 
+            even if <span lang="ja">ウオ チュー シュエシャオ</span> is read aloud using the Japanese text-to-speech engine, 
+            the result will not be helpful to learners because of the incorrect pronunciation and four tones. 
+            Katakana pronunciation is also useless in languages such as English.
+          </p>
+        </section>
+
+        <section>
+          <h4>Double-sided ruby</h4>
+          <p>
+            Since there are two ruby text chunks, double-sided ruby leads to reading aloud three times. 
+            One of the ruby text chunks is typically furigana, so the description in 1) applies. 
+            If the other ruby text chunk is a Gikun, the description in 2) applies; 
+            if it is an interlinear note, the description in 4) applies.
+          </p>
+        </section>
+      </section>
+
+      <section>
+        <h3>Reading aloud ruby only</h3>
+        <p>
+          In this option, ruby is read aloud but base characters are not. 
+          For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "bar".
+        </p>
+
+        <section>
+          <h4>Furigana</h4>
+          <p>
+            The option of reading aloud ruby only provides not-incorrect-but-unnatural results usually. 
+            In some cases, it causes mistakes in deciding whether <span lang="ja">へ</span> should be read aloud 
+            as <span lang="ja">え</span> (/e/) or <span lang="ja">へ</span> (/he/) and 
+            whether <span lang="ja">は</span> should be read aloud as <span lang="ja">わ</span> (/wa/) or <span lang="ja">は</span> (/ha/). 
+            This is because the morphological analysis does not work properly and pronunciation dictionaries 
+            for compound words cannot be used, as kana characters are used instead of CJK ideographic characters.
+            As an example, consider <span lang="ja">今後は<ruby><rb>発展</rb><rt>はってん</rt></ruby></span>. 
+            T2S of <span lang="ja">今後は発展</span> typically works fine but that of <span lang="ja">今後ははってん</span> does not. 
+            The first occurrence of は should be read aloud as <span lang="ja">わ</span> (/wa/) 
+            but is mistakenly read aloud as <span lang="ja">は</span> (/ha/).
+          </p>
+          <p>
+            Even when this option is used, it might be wise to ignore furigana-added-for-enhanced-accessibility but rely on base characters.
+          </p>
+          <p>
+            If furigana is assigned only for the first occurrence of a word, 
+            there is a risk that the first occurrence and the others are read aloud differently.
+          </p>
+          <aside class="note" title="" id="n20211101002">
+            One way to avoid this problem is for the text-to-speech engine to maintain a correspondence table between base characters and ruby.
+            <span class="todo">Note or in main text?</span>
+          </aside>
+        </section>
+
+        <section>
+          <h4>Gikun</h4>
+          <p>
+            The option of reading aloud ruby only provides an understandable result but does not properly convey the author's intention.
+          </p>
+          <p>
+            <span lang="ja"><ruby><rb>生命</rb><rt>いのち</rt></ruby></span> will be read aloud as <span lang="ja">いのち</span> ("inochi").
+          </p>
+        </section>
+
+        <section>
+          <h4>Unusual names of people and places</h4>
+          <p>
+            The option of reading aloud ruby only works correctly. 
+            However, if the first occurrence of a name is accompanied by ruby and the other occurrences are not, 
+            the first occurrence is read aloud differently from the others thus suggesting different persons or places.
+          </p>
+          <p>
+            For example, <span lang="ja"><ruby><rb>不死川玄弥</rb><rt>しなずがわげんや</rt></ruby></span> 
+            is read aloud as Shinazugawa Genya correctly. 
+            But later occurrences of <span lang="ja">不死川玄弥</span> are read aloud as Fushikawa Genya if they do not have ruby.
+          </p>
+          <aside class="note" title="" id="n20211101003">
+            A workaround is available as described in the note in 1).
+            <span class="todo">Note or in main text?</span>
+          </aside>
+        </section>
+
+        <section>
+          <h4>Interlinear notes</h4>
+          <p>
+            The option of reading aloud ruby provides incomprehensible results often.
+          </p>
+          <p>
+            If <span lang="ja">"1837-1913 江戸幕府最後の将軍"</span> is attached to <span lang="ja">徳川慶喜</span> as ruby, 
+            it will be read aloud as <span lang="ja">"1543-1616 エドバクフサイゴノショウグン"</span> 
+            (1543-1616 the last shogun of the Edo shogunate), which is reasonable.
+            But if only "1543-1616" is attached as ruby, the result is "1543-1616" which does not make any sense.
+          </p>
+        </section>
+
+        <section>
+          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <p>
+            The option of reading aloud ruby only interferes with readers' understanding significantly.
+          </p>
+          <p>
+            In the example of <span lang="zh-hans">我去学校</span> (<span lang="ja">ウオ チュー シュエシャオ</span>), 
+            even if <span lang="ja">ウオ チュー シュエシャオ</span> is read out in the Japanese style, 
+            it will not be helpful to learners because of the inaccurate pronunciation and the four tones (tones). 
+            Katakana pronunciation is also useless in languages such as English.
+          </p>
+        </section>
+
+        <section>
+          <h4>Double-sided ruby</h4>
+          <p>
+            The option of reading aloud ruby only makes two ruby text chunks be read aloud while ignoring base characters. 
+            Since one of the ruby text chunks is typically furigana, the description in 1) applies. 
+            If the other ruby text chunk is a Gikun, the description in 2) applies; 
+            if it is an interlinear note, the description in 4) applies.
+          </p>
+        </section>
+      </section>
+
+      <section>
+        <h3>Reading aloud base characters only</h3>
+        <p>
+          In this option, base characters are read aloud but ruby is not. 
+          For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "foo".
+        </p>
+        <aside class="note" title="" id="n20211101004">
+          This option does not necessarily ignore ruby. 
+          Although text-to-speech engines mainly use base characters, they may also use ruby as a hint.
+        </aside>
+
+        <section>
+          <h4>Furigana</h4>
+          <p>
+            The option of reading aloud base characters only may or may not provide good results, depending on text-to-speech engines.
+          </p>
+          <p>
+            The following is a quote from [[?ACCESSIBLE_E_BOOKS]].
+          </p>
+          <aside class="note" title="" id="n20211101005">
+            The characters that can be read out aloud by TTS engines are currently limited to JIS X 0208:1997. 
+            Half of the JIS CJK ideographic characters cannot be read aloud.
+          </aside>
+          <p>
+            Furthermore, compound words made up from CJK ideographic characters in JIS X 0208 are sometimes read aloud incorrectly.
+          </p>
+          <p>
+            As the importance of accessibility is well recognized and text-to-speech engines are improved, 
+            more and more words will be read aloud correctly. 
+            However, there are some words, such as the aforementioned "Yamazaki", 
+            that cannot be read aloud correctly by text-to-speech engines and even native Japanese speakers.
+          </p>
+        </section>
+
+        <section>
+          <h4>Gikun</h4>
+          <p>
+            The option of reading aloud base characters only results in a perfectly understandable result. 
+            However, since gikun is ignored, the author's intent is not completely conveyed.
+          </p>
+          <p>
+            <span lang="ja"><ruby><rb>生命</rb><rt>いのち</rt></ruby></span> is read out as "seimei".
+          </p>
+        </section>
+
+        <section>
+          <h4>Unusual names of people and places</h4>
+          <p>
+            The option of reading base characters only leads to incorrect results. 
+            However, since every occurrence of a name is read aloud in the same way, users will not be confused.
+          </p>
+          <p>
+            Every occurrence <span lang="ja"><ruby><rb>不死川 玄弥</rb><rt>しなずがわ　げんや</rt></ruby></span> 
+            will always be incorrectly read aloud as <span lang="ja">ふしかわ げんや</span>, regardless of the presence or absence of ruby.
+          </p>
+        </section>
+
+        <section>
+          <h4>Interlinear notes</h4>
+          <p>
+            The option of reading base characters only provides a perfectly understandable result. 
+            However, since interline notes are ignored, the author's intention is not conveyed well.
+          </p>
+          <p>
+            <span lang="ja"><ruby><rb>徳川慶喜</rb><rt>1837-1913 江戸幕府最後の将軍</rt></ruby> 
+              (Tokugawa Yoshinobu 1543-1616, the last shogun of the Edo shogunate), 
+              will be read aloud as <span lang="ja">とくがわいえのぶ</span> (Tokugawa Yoshinobu).
+          </p>
+        </section>
+
+        <section>
+          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <p>
+            The option of reading base characters only is most appropriate when natural languages are correctly identified 
+            and base characters are read aloud by a text-to-speech engine in that language. 
+            On the other hand, if the natural language cannot be identified or the text-to-speech engine for that language is not available, 
+            the result is not understandable.        
+          </p>
+        </section>
+
+        <section>
+          <h4>Double-sided ruby</h4>
+          <p>
+            The option of reading base characters only will ignore the two ruby text chunks and read the base characters. 
+            When one of the ruby text chunks is furigana, the description in 1) applies. 
+            If the other is a gikun, the description in 2) applies, and if it is an interlinear note, the description in 4) applies.
+          </p>
+        </section>
+      </section>
+    </section>
+
+    <section>
+      <h2>Miscellaneous issues around ruby markup</h2>
+
+      <section>
+        <h3>Conversion from small kana characters to full-size kana characters</h3>
+        <p>
+          Small kana characters <span lang="ja">ゃ</span>, <span lang="ja">ゅ</span>, <span lang="ja">ょ</span>, and 
+          <span lang="ja">っ</span> are too small when they appear in ruby. 
+          For this reason, instead of these small characters, full-size kana characters <span lang="ja">や</span>, 
+          <span lang="ja">ゆ</span>, <span lang="ja">よ</span>, and <span lang="ja">つ</span> are used in ruby.      
+        </p>
+        <p>
+          However, since full-size kana characters are pronounced differently from small kana, 
+          ruby containing full-size kana is read aloud differently.
+        </p>
+        <p>
+          CSS has a mechanism for overcoming this problem. 
+          Value '<a data-cite="css-text-3" data-xref-type="css-value" data-xref-for="text-transform">full-size-kana</a>' of 
+          the <a data-cite="css-text-3" data-xref-type="css-property">text-transform</a> property as specified in CSS Text converts 
+          small kana characters to full-size kana. 
+          It is thus possible to use small kana in ruby markup while rendering ruby using full-size kana. 
+          Text-to-speech engines can provide correct results even when ruby is read aloud.
+        </p>
+      </section>
+
+      <section>
+        <h3>A single ruby element or multiple ruby elements per compound word</h3>
+        <p>
+          Okayama-san of Hitach has argued that, even in the case of mono ruby, 
+          creating a single ruby element per compound word is better than creating a ruby element for each base character in a compound word. 
+          For example, to attach mono ruby to <span lang="ja">生命</span>, he recommends a single ruby element and two rt elements: 
+          one for <span lang="ja">生</span> and another for <span lang="ja">命</span> rather than creating two ruby elements.
+        </p>
+        <p>
+          A single ruby element per compound word can be rendered as mono ruby or jukugo ruby by CSS. 
+          Moreover, it is also easy for the text-to-speech engine to maintain a correspondence table between base characters and ruby.
+        </p>
+      </section>
+
+      <section>
+        <h3>Markup for indicating furigana-added-for-enhanced-accessibility</h3>
+        <p>
+          Although furigana-added-for-enhanced-accessibility is necessary for those readers who have particular 
+          difficulties with CJK ideographic characters, it is unnecessary or slightly disturbing for others. 
+          If furigana-added-for-enhanced-accessibility is distinguishable from normal furigana, 
+          it can be made visible or invisible depending on user preferences. 
+          It is thus necessary to standardize a markup mechanism for indicating furigana-added-for-enhanced-accessibility.
+        </p>
+      </section>
+
+      <section>
+        <h3>Markup for indicating ruby used as gikun or interlinear note</h3>
+        <p>
+          In Section 3, we have seen that ruby used as gikun or interline notes should be read aloud differently from the other cases. 
+          It is thus necessary to standardize a markup mechanism for clearly indicating ruby used as gikun or interlinear note.
+        </p>
+      </section>
+    </section>
+
+    <section>
+      <h2>Alternatives to ruby</h2>
+
+      <section>
+        <h3>SSML</h3>
+        <p>
+          In EPUB publications, [[?SSML]] attributes can be attached to XHTML elements for specifying phonemic/phonetic pronunciations. 
+          [[?SSML]] attributes are used by text-to-speech engines for speech synthesis but they are not used for visual rendering. 
+          [[?SSML]] can control text-to-speech much better than ruby.
+        </p>
+        <p>
+          However, it has been reported that attaching [[?SSML]] to CJK ideographic characters thoroughly significantly 
+          increases the authoring cost. 
+          Although [[?SSML]] has been used by some textbook publishers in Japan, it is unlikely to be widely used for trade books.      
+        </p>
+      </section>
+
+      <section>
+        <h3>PLS</h3>
+        <p>
+          While [[?SSML]] attributes are embedded within [[?XHTML2]] content documents in EPUB publications, 
+          PLS dictionaries (see Pronunciation Lexicon Specification) in EPUB publications are stored externally 
+          to and referenced by XHTML content documents. 
+          A PLS dictionary contains a collection of words or phrases containing pronunciation information.
+        </p>
+        <p>
+          PLS is a powerful mechanism for the text-to-speech of unusual names of people and places.  
+          Every occurrence of a word or phrase is read aloud in the same way regardless of ruby.
+        </p>
+      </section>
+    </section>
+
+    <section>
+      <h2>Use of Ruby for Automatic Braille Translation</h2>
+      <p>
+        Conversion of HTML documents and EPUB publications to braille is expected to become important in the near future.
+      </p>
+      <p>
+        Japanese braille does not have CJK ideographic characters and does not distinguish hiragana and katakana. 
+        (Note: Han braille has CJK ideographic characters, but it is not widely used.)
+      </p>
+      <p>
+        Braille has some syntactical differences from the Japanese writing system. 
+        First, the space character is inserted as delimiters between words. 
+        Second, two Japanese particles <span lang="ja">は</span> and <span lang="ja">へ</span> are written as they are pronounced; 
+        that is, <span lang="ja">は</span> and <span lang="ja">へ</span> are represented 
+        as if they were <span lang="ja">わ</span> and <span lang="ja">え</span>. 
+        Third, <span lang="ja">う</span> pronounced as the elongated sound is represented by the long vowel character.
+      </p>
+      <p>
+        Natural language processing is required for handling these differences in the conversion to braille. 
+        But, unlike in the case of text-to-speech, intonation is not relevant. 
+      </p>
+      <p>
+        To convert HTML or EPUB to braille, it is crucial to choose the correct reading of each CJK ideographic character. 
+        If an incorrect reading is chosen, the generated braille becomes incorrect. 
+        As in the case of text-to-speech, ruby provides useful hints while [[?SSML]] and PLS are good alternatives.
+      </p>
+      <p>
+        For furigana and unusual names of people and places, natural language processing will work better 
+        when CJK ideographic characters are used as a basis, while correct reading will be chosen when ruby is used as a basis. 
+        It is even possible to use both parent characters and ruby.
+      </p>
+    </section>
+
+    <section>
+      <h2>Document formats other than HTML and EPUB</h2>
+
+      <section>
+        <h3>OOXML</h3>
+        <p>
+          Microsoft Word reads aloud neither base characters nor ruby. Therefore, text-to-speech does not work when ruby is used.
+        </p>
+      </section>
+
+      <section>
+        <h3>PDF</h3>
+        <p>
+          Ruby in PDF documents is represented as separate lines containing tiny characters. 
+          The relationship between base characters and ruby is not explicitly represented.
+        </p>
+        <p>
+          Some implementations read aloud the ruby line first and then read the original line, which contains base characters. 
+          Such implementations provide incomprehensible results.  Other implementations simply ignore ruby lines. 
+          Subsection 3.3 applies to these implementations.
+        </p>
+      </section>
+    </section>
+    
   </body>
 </html>
