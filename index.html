@@ -62,8 +62,8 @@
         while a companion document (now in Japanese only) focuses on implementation issues.
       </p>
       <p>
-        Section 2 enumerates the roles ruby plays in relation to base characters. 
-        Section 3 describes possible options for using base characters and/or ruby for the text-to-speech and discusses 
+        Section 2 enumerates the roles of ruby annotation play in relation to its base text. 
+        Section 3 describes possible options for using base text and/or ruby annotation for the text-to-speech and discusses 
         the pros and cons of each option. 
         Section 4 shows ruby markup issues around the text-to-speech. 
         Section 5 introduces alternative mechanisms (SSML and PLS). 
@@ -73,36 +73,36 @@
     </section>
 
     <section>
-      <h2>Roles of Ruby</h2>
+      <h2>Roles of Ruby annotation</h2>
 
       <section>
         <h3>Furigana</h3>
         <p>
-          The primary use of ruby is to indicate how to read CJK ideographic characters 
+          The primary use of ruby annotation is to indicate how to read CJK ideographic characters 
           (<dfn>furigana</dfn>, see also <a data-cite="JLREQ#term.furigana">JLReq terminology</a>).
         </p>
         <p>
-          Nowadays, it is not common to attach ruby to all CJK ideographic characters 
+          Nowadays, it is not common to attach ruby annotations to every CJK ideographic characters 
           (<dfn>general ruby</dfn>, see also <a data-cite="JLREQ#term.general-ruby">JLReq terminology</a>).
-          Ruby is typically attached to difficult CJK ideographic characters only 
+          Ruby annotations are typically attached to difficult CJK ideographic characters only 
           (<dfn>para ruby</dfn>, see also <a data-cite="JLREQ#term.para-ruby">JLReq terminology</a>).
         </p>
         <p>
           Ruby is used in trade books, newspapers, textbooks, teaching materials, etc., but is rarely used in business documents.
         </p>
         <p>
-          Even for simple CJK ideographic characters, ruby may be added for some users who have particular 
+          Even for simple CJK ideographic characters, ruby annotations may be added for some users who have particular 
           difficulties with CJK ideographic characters 
-          (in electronic documents, it is easy to make ruby visible or invisible based on user preferences). 
-          Such ruby is called furigana-added-for-enhanced-accessibility.
+          (in electronic documents, it is easy to make ruby annotations visible or invisible based on user preferences). 
+          Such ruby annotations are called as furigana-added-for-enhanced-accessibility.
         </p>
         <p>
-          Some simple CJK ideographic characters have more than one possible reading and thus require ruby for disambiguation.  
+          Some simple CJK ideographic characters have more than one possible reading and thus require ruby annotations for disambiguation.  
           This is common for names of people and places. For example, "<span lang="ja">山崎</span>" (a person's name) may be read as 
           "Yamazaki" or "Yamasaki". 
         </p>
         <p>
-          In the case of para ruby, ruby is often attached to the first occurrence of a CJK ideographic character, 
+          In the case of para ruby, ruby annotation is often attached to the first occurrence of each CJK ideographic character, 
           and not attached to the second and subsequent occurrences of the same character, 
           probably because users should learn from the first occurrence.
         </p>
@@ -111,7 +111,7 @@
       <section>
         <h3>Gikun</h3>
         <p>
-          Especially in Japan, ruby is also used for indicating something different from the reading of a CJK ideographic character.
+          Especially in Japan, ruby annotation is also used for indicating something different from the reading of a CJK ideographic character.
           Such ruby is called <dfn>Gikun</dfn>.  Gikun tends to be used in light novels and comics. 
         </p>
         <p>
@@ -167,14 +167,14 @@
           which is totally different from the Japanese language.
         </p>
         <p>
-          In many cases, the first occurrence of an unusual name is accompanied by ruby but the other occurrences are not.
+          In many cases, the first occurrence of an unusual name is accompanied by ruby annotation but the other occurrences are not.
         </p>
       </section>
 
       <section>
         <h3>Interlinear notes</h3>
         <p>
-          <dfn>Interlinear notes</dfn> look similar to ruby.  
+          <dfn>Interlinear notes</dfn> look similar to ruby annotations.  
           A <a data-cite="JLREQ#n224">note in JLreq</a> introduces interlinear notes:
         </p>
         <aside class="note" title="Quoted note from JLReq" id="n20211101001">
@@ -201,35 +201,35 @@
       </section>
 
       <section>
-        <h3>Ruby to indicate the reading of a foreign phrase in language textbooks</h3>
+        <h3>Ruby annotation to indicate the reading of a foreign phrase in language textbooks</h3>
         <p>
-          In language textbooks, ruby is sometimes used to indicate the reading of a foreign phrase in hiragana or katakana. 
-          For example, a Chinese phrase <span lang="zh-hans">我去学校</span> may have <span lang="ja">ウオ チュー シュエシャオ</span> as ruby.
+          In language textbooks, ruby annotation is sometimes used to indicate the reading of a foreign phrase in hiragana or katakana. 
+          For example, a Chinese phrase <span lang="zh-hans">我去学校</span> may have <span lang="ja">ウオ チュー シュエシャオ</span> as ruby annotation.
         </p>
       </section>
 
       <section>
         <h3>Double-sided Ruby</h3>
         <p>
-          A sequence of base characters may be accompanied by two ruby text chunks. 
+          A sequence of base characters may be accompanied by two ruby annotations. 
           Typically, one of them is [=Furigana=] and the other is either a [=GIKUN=] or [=interlinear note=].  
           In <a data-cite="JLREQ#fig2_3_12">an example in JLreq</a> 
           ("An example of ruby attached to both sides of the base characters"), 
           <span lang="ja">東南</span> is accompanied by <span lang="ja">たつみ</span> and <span lang="ja">とうなん</span>. 
-          Here <span lang="ja">東南</span> means "southeast", <span lang="ja">とうなん</span> (TOUNAN) is a furigana, 
+          Here <span lang="ja">東南</span> means "southeast", <span lang="ja">とうなん</span> (TOUNAN) is a [=furigana=], 
           and <span lang="ja">たつみ</span> (Tatsumi) is a [=GIKUN=], 
           since <span lang="ja">辰巳</span> (read as <span lang="ja">たつみ</span>) means the same direction as <span lang="ja">東南</span>.
         </p>
         <figure id="f20211101001">
           <img src="./img/rdr001.svg" alt="Double-sided ruby example 1" width="65" height="54" />
-          <figcaption><span lang="ja">東洋</span> has upper-side ruby <span lang="ja">オリエント</span> and lower-side ruby <span lang="ja">とうよう</span></figcaption>
+          <figcaption><span lang="ja">東洋</span> has upper-side ruby annotation <span lang="ja">オリエント</span> and lower-side ruby annotation <span lang="ja">とうよう</span></figcaption>
         </figure>
         <p>
           Here <span lang="ja">とうよう</span> is a [=furigana=] and <span lang="ja">オリエント</span> is a [=Gikun=].
         </p>
         <figure id="f20211101002">
           <img src="./img/rdr002.svg" alt="Double-sided ruby example 2" width="110" height="53" />
-          <figcaption><span lang="ja">織田信長</span> has upper-side ruby "1534〜82" and lower-side ruby <span lang="ja">おだのぶなが</span></figcaption>
+          <figcaption><span lang="ja">織田信長</span> has upper-side ruby annotation <span lang="ja">"1534〜82"</span> and lower-side ruby annotation <span lang="ja">おだのぶなが</span></figcaption>
         </figure>
         <p>
           Here <span lang="ja">おだのぶなが</span> is a [=furigana=] and "1534-82" is an [=interlinear note=].
