@@ -392,7 +392,7 @@
         <section>
           <h4>Gikun</h4>
           <p>
-            The option of reading aloud ruby only provides an understandable result but does not properly convey the author's intention.
+            The option of reading aloud ruby annotation only provides an understandable result but does not properly convey the author's intention.
           </p>
           <p>
             <span lang="ja"><ruby><rb>生命</rb><rt>いのち</rt></ruby></span> will be read aloud as <span lang="ja">いのち</span> ("inochi").
@@ -402,14 +402,14 @@
         <section>
           <h4>Unusual names of people and places</h4>
           <p>
-            The option of reading aloud ruby only works correctly. 
-            However, if the first occurrence of a name is accompanied by ruby and the other occurrences are not, 
+            The option of reading aloud ruby annotation only works correctly. 
+            However, if the first occurrence of a name is accompanied by ruby annotation and the other occurrences are not, 
             the first occurrence is read aloud differently from the others thus suggesting different persons or places.
           </p>
           <p>
             For example, <span lang="ja"><ruby><rb>不死川玄弥</rb><rt>しなずがわげんや</rt></ruby></span> 
             is read aloud as Shinazugawa Genya correctly. 
-            But later occurrences of <span lang="ja">不死川玄弥</span> are read aloud as Fushikawa Genya if they do not have ruby.
+            But later occurrences of <span lang="ja">不死川玄弥</span> are read aloud as Fushikawa Genya if they do not have ruby annotation.
           </p>
           <aside class="note" title="" id="n20211101003">
             A workaround is available as described in the note in 1).
@@ -420,20 +420,20 @@
         <section>
           <h4>Interlinear notes</h4>
           <p>
-            The option of reading aloud ruby provides incomprehensible results often.
+            The option of reading aloud ruby annotation only provides incomprehensible results often.
           </p>
           <p>
-            If <span lang="ja">"1837-1913 江戸幕府最後の将軍"</span> is attached to <span lang="ja">徳川慶喜</span> as ruby, 
+            If <span lang="ja">"1837-1913 江戸幕府最後の将軍"</span> is attached to <span lang="ja">徳川慶喜</span> as ruby annotation, 
             it will be read aloud as <span lang="ja">"1837-1913 エドバクフサイゴノショウグン"</span> 
             (1837-1913 the last shogun of the Edo shogunate), which is reasonable.
-            But if only "1837-1913" is attached as ruby, the result is "1837-1913" which does not make any sense.
+            But if only "1837-1913" is attached as ruby annotation, the result is "1837-1913" which does not make any sense.
           </p>
         </section>
 
         <section>
-          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <h4>Ruby annotation to indicate the reading of a foreign phrase in language books</h4>
           <p>
-            The option of reading aloud ruby only interferes with readers' understanding significantly.
+            The option of reading aloud ruby annotation only interferes with readers' understanding significantly.
           </p>
           <p>
             In the example of <span lang="zh-hans">我去学校</span> (<span lang="ja">ウオ チュー シュエシャオ</span>), 
@@ -446,29 +446,29 @@
         <section>
           <h4>Double-sided ruby</h4>
           <p>
-            The option of reading aloud ruby only makes two ruby text chunks be read aloud while ignoring base characters. 
-            Since one of the ruby text chunks is typically furigana, the description in 1) applies. 
-            If the other ruby text chunk is a Gikun, the description in 2) applies; 
+            The option of reading aloud ruby annotation only makes two chunks of ruby annotation be read aloud while ignoring their base text. 
+            Since one of the ruby annotation is typically furigana, the description in 1) applies. 
+            If the other ruby annotation is a Gikun, the description in 2) applies; 
             if it is an interlinear note, the description in 4) applies.
           </p>
         </section>
       </section>
 
       <section>
-        <h3>Reading aloud base characters only</h3>
+        <h3>Reading aloud base text only</h3>
         <p>
-          In this option, base characters are read aloud but ruby is not. 
+          In this option, base text are read aloud but ruby annotation is not. 
           For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "foo".
         </p>
         <aside class="note" title="" id="n20211101004">
-          This option does not necessarily ignore ruby. 
-          Although text-to-speech engines mainly use base characters, they may also use ruby as a hint.
+          This option does not necessarily ignore ruby annotation. 
+          Although text-to-speech engines mainly use base text, they may also use ruby annotation as a hint.
         </aside>
 
         <section>
           <h4>Furigana</h4>
           <p>
-            The option of reading aloud base characters only may or may not provide good results, depending on text-to-speech engines.
+            The option of reading aloud base text only may or may not provide good results, depending on text-to-speech engines.
           </p>
           <p>
             The following is a quote from [[?ACCESSIBLE_E_BOOKS]].
@@ -491,7 +491,7 @@
         <section>
           <h4>Gikun</h4>
           <p>
-            The option of reading aloud base characters only results in a perfectly understandable result. 
+            The option of reading aloud base text only results in a perfectly understandable result. 
             However, since gikun is ignored, the author's intent is not completely conveyed.
           </p>
           <p>
@@ -502,19 +502,19 @@
         <section>
           <h4>Unusual names of people and places</h4>
           <p>
-            The option of reading base characters only leads to incorrect results. 
+            The option of reading base text only leads to incorrect results. 
             However, since every occurrence of a name is read aloud in the same way, users will not be confused.
           </p>
           <p>
             Every occurrence <span lang="ja"><ruby><rb>不死川 玄弥</rb><rt>しなずがわ　げんや</rt></ruby></span> 
-            will always be incorrectly read aloud as <span lang="ja">ふしかわ げんや</span>, regardless of the presence or absence of ruby.
+            will always be incorrectly read aloud as <span lang="ja">ふしかわ げんや</span>, regardless of the presence or absence of ruby annotation.
           </p>
         </section>
 
         <section>
           <h4>Interlinear notes</h4>
           <p>
-            The option of reading base characters only provides a perfectly understandable result. 
+            The option of reading base text only provides a perfectly understandable result. 
             However, since interline notes are ignored, the author's intention is not conveyed well.
           </p>
           <p>
@@ -525,10 +525,10 @@
         </section>
 
         <section>
-          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <h4>Ruby annotation to indicate the reading of a foreign phrase in language books</h4>
           <p>
-            The option of reading base characters only is most appropriate when natural languages are correctly identified 
-            and base characters are read aloud by a text-to-speech engine in that language. 
+            The option of reading base text only is most appropriate when natural languages are correctly identified 
+            and base text are read aloud by a text-to-speech engine in that language. 
             On the other hand, if the natural language cannot be identified or the text-to-speech engine for that language is not available, 
             the result is not understandable.        
           </p>
@@ -537,8 +537,8 @@
         <section>
           <h4>Double-sided ruby</h4>
           <p>
-            The option of reading base characters only will ignore the two ruby text chunks and read the base characters. 
-            When one of the ruby text chunks is furigana, the description in 1) applies. 
+            The option of reading base text only will ignore the two chunks of ruby annotation and read their base text only. 
+            When one of the ruby annotation is furigana, the description in 1) applies. 
             If the other is a gikun, the description in 2) applies, and if it is an interlinear note, the description in 4) applies.
           </p>
         </section>
