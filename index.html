@@ -552,35 +552,35 @@
         <h3>Conversion from small kana characters to full-size kana characters</h3>
         <p>
           Small kana characters <span lang="ja">ゃ</span>, <span lang="ja">ゅ</span>, <span lang="ja">ょ</span>, and 
-          <span lang="ja">っ</span> are too small when they appear in ruby. 
+          <span lang="ja">っ</span> are too small when they appear in ruby annotation. 
           For this reason, instead of these small characters, full-size kana characters <span lang="ja">や</span>, 
-          <span lang="ja">ゆ</span>, <span lang="ja">よ</span>, and <span lang="ja">つ</span> are used in ruby.      
+          <span lang="ja">ゆ</span>, <span lang="ja">よ</span>, and <span lang="ja">つ</span> are used in ruby annotation.
         </p>
         <p>
           However, since full-size kana characters are pronounced differently from small kana, 
-          ruby containing full-size kana is read aloud differently.
+          ruby annotation containing full-size kana is read aloud differently.
         </p>
         <p>
           CSS has a mechanism for overcoming this problem. 
           Value '<a data-cite="css-text-3" data-xref-type="css-value" data-xref-for="text-transform">full-size-kana</a>' of 
           the <a data-cite="css-text-3" data-xref-type="css-property">text-transform</a> property as specified in CSS Text converts 
           small kana characters to full-size kana. 
-          It is thus possible to use small kana in ruby markup while rendering ruby using full-size kana. 
-          Text-to-speech engines can provide correct results even when ruby is read aloud.
+          It is thus possible to use small kana in ruby annotation while rendering ruby annotation using full-size kana. 
+          Text-to-speech engines can provide correct results even when ruby annotation is read aloud.
         </p>
       </section>
 
       <section>
-        <h3>A single ruby element or multiple ruby elements per compound word</h3>
+        <h3>A single ruby element or multiple ruby elements per one compound word</h3>
         <p>
           Okayama-san of Hitach has argued that, even in the case of mono ruby, 
-          creating a single ruby element per compound word is better than creating a ruby element for each base character in a compound word. 
-          For example, to attach mono ruby to <span lang="ja">生命</span>, he recommends a single ruby element and two rt elements: 
+          creating a single ruby element per compound word is better than creating a ruby element for each character of base text in a compound word. 
+          For example, to attach mono ruby to <span lang="ja">生命</span>, he recommends a single ruby element and two sets of rb and rt elements: 
           one for <span lang="ja">生</span> and another for <span lang="ja">命</span> rather than creating two ruby elements.
         </p>
         <p>
           A single ruby element per compound word can be rendered as mono ruby or jukugo ruby by CSS. 
-          Moreover, it is also easy for the text-to-speech engine to maintain a correspondence table between base characters and ruby.
+          Moreover, it is also easy for the text-to-speech engine to maintain a correspondence table between base text and ruby annotation.
         </p>
       </section>
 
@@ -596,10 +596,10 @@
       </section>
 
       <section>
-        <h3>Markup for indicating ruby used as gikun or interlinear note</h3>
+        <h3>Markup for indicating ruby annotation used as gikun or interlinear note</h3>
         <p>
-          In Section 3, we have seen that ruby used as gikun or interline notes should be read aloud differently from the other cases. 
-          It is thus necessary to standardize a markup mechanism for clearly indicating ruby used as gikun or interlinear note.
+          In Section 3, we have seen that ruby annotation used as gikun or interline notes should be read aloud differently from the other cases. 
+          It is thus necessary to standardize a markup mechanism for clearly indicating ruby annotation used as gikun or interlinear note.
         </p>
       </section>
     </section>
@@ -664,8 +664,8 @@
       </p>
       <p>
         For furigana and unusual names of people and places, natural language processing will work better 
-        when CJK ideographic characters are used as a basis, while correct reading will be chosen when ruby is used as a basis. 
-        It is even possible to use both parent characters and ruby.
+        when CJK ideographic characters are used as a basis, while correct reading will be chosen when ruby annotation is used as a basis. 
+        It is even possible to use both base text and ruby annotation.
       </p>
     </section>
 
@@ -675,7 +675,7 @@
       <section>
         <h3>OOXML</h3>
         <p>
-          Microsoft Word reads aloud neither base characters nor ruby. Therefore, text-to-speech does not work when ruby is used.
+          Microsoft Word reads aloud neither base text nor ruby annotation. Therefore, text-to-speech does not work when ruby is used.
         </p>
       </section>
 
@@ -683,11 +683,11 @@
         <h3>PDF</h3>
         <p>
           Ruby in PDF documents is represented as separate lines containing tiny characters. 
-          The relationship between base characters and ruby is not explicitly represented.
+          The relationship between base text and ruby annotation is not explicitly represented.
         </p>
         <p>
-          Some implementations read aloud the ruby line first and then read the original line, which contains base characters. 
-          Such implementations provide incomprehensible results.  Other implementations simply ignore ruby lines. 
+          Some implementations read aloud a line for ruby annotations first and then read corresponding original line, which contains base text. 
+          Such implementations provide incomprehensible results.  Other implementations simply ignore lines for ruby annotation. 
           Subsection 3.3 applies to these implementations.
         </p>
       </section>
