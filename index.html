@@ -238,15 +238,15 @@
     </section>
     
     <section>
-      <h2>Which should be read aloud, base characters or ruby, or both?</h2>
+      <h2>Which should be read aloud, base text or ruby annotation, or both?</h2>
       <p>
-        There are three possible options: (1) both base characters and ruby, (2) ruby only, and (3) base characters only.
+        There are three possible options: (1) both base text and ruby annotation, (2) ruby annotation only, and (3) base text only.
       </p>
 
       <section>
-        <h3>Reading aloud both base characters and ruby</h3>
+        <h3>Reading aloud both base text and ruby annoation</h3>
         <p>
-          In this option, base characters are read aloud first and ruby is then read aloud. 
+          In this option, base text are read aloud first and ruby annotation is then read aloud. 
           Many implementations (screen readers, in particular) support this option only. 
           For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "foo bar".
         </p>
@@ -260,8 +260,8 @@
           </p>
           <p>
             Consider an example from "The Rich Man and the Chicken" by <span lang="ja">小川未明</span> (OGAWA Mimei). 
-            Note that the mono ruby for <span lang="ja">新鮮</span> is expressed by two rt elements: 
-            one for <span lang="ja">新</span> and the other is for <span lang="ja">鮮</span>.
+            Note that the mono ruby for <span lang="ja">新鮮</span> is expressed by two rt (ruby annotation) elements: 
+            one ruby annotation for <span lang="ja">新</span> and the other ruby annotation is for <span lang="ja">鮮</span>.
           </p>
           <section>
             <h5>Original text</h5>
@@ -272,7 +272,7 @@
               <ruby>食<rt>た</rt></ruby>べようと<ruby>思<rt>おも</rt></ruby>いました。
             </p>
             <p>
-              If there is no ruby, this should be read aloud as:<br/> 
+              If there is no ruby annotation, this should be read aloud as:<br/> 
               <span lang="ja">にわとりでもかって、しんせんなたまごをうましてたべようとおもいました。</span>
               (Niwatori demo katte shinsenna tamagowo umashite tabeyouto omoimashita.)
             </p>
@@ -332,7 +332,7 @@
         </section>
 
         <section>
-          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <h4>Ruby annotation to indicate the reading of a foreign phrase in language books</h4>
           <p>
             The option of reading aloud both interferes with readers' understanding significantly.
           </p>
@@ -347,25 +347,25 @@
         <section>
           <h4>Double-sided ruby</h4>
           <p>
-            Since there are two ruby text chunks, double-sided ruby leads to reading aloud three times. 
-            One of the ruby text chunks is typically furigana, so the description in 1) applies. 
-            If the other ruby text chunk is a Gikun, the description in 2) applies; 
+            Since there are two chunks of ruby annotation, double-sided ruby leads to reading aloud three times. 
+            One of the ruby annotations is typically furigana, so the description in 1) applies. 
+            If the other ruby annotation is a Gikun, the description in 2) applies; 
             if it is an interlinear note, the description in 4) applies.
           </p>
         </section>
       </section>
 
       <section>
-        <h3>Reading aloud ruby only</h3>
+        <h3>Reading aloud ruby annotation only</h3>
         <p>
-          In this option, ruby is read aloud but base characters are not. 
+          In this option, ruby annotation is read aloud but base text is not. 
           For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "bar".
         </p>
 
         <section>
           <h4>Furigana</h4>
           <p>
-            The option of reading aloud ruby only provides not-incorrect-but-unnatural results usually. 
+            The option of reading aloud ruby annotation only provides not-incorrect-but-unnatural results usually. 
             In some cases, it causes mistakes in deciding whether <span lang="ja">へ</span> should be read aloud 
             as <span lang="ja">え</span> (/e/) or <span lang="ja">へ</span> (/he/) and 
             whether <span lang="ja">は</span> should be read aloud as <span lang="ja">わ</span> (/wa/) or <span lang="ja">は</span> (/ha/). 
@@ -373,18 +373,18 @@
             for compound words cannot be used, as kana characters are used instead of CJK ideographic characters.
             As an example, consider <span lang="ja">今後は<ruby><rb>発展</rb><rt>はってん</rt></ruby></span>. 
             T2S of <span lang="ja">今後は発展</span> typically works fine but that of <span lang="ja">今後ははってん</span> does not. 
-            The first occurrence of は should be read aloud as <span lang="ja">わ</span> (/wa/) 
+            The first occurrence of <span lang="ja">は</span> should be read aloud as <span lang="ja">わ</span> (/wa/) 
             but is mistakenly read aloud as <span lang="ja">は</span> (/ha/).
           </p>
           <p>
-            Even when this option is used, it might be wise to ignore furigana-added-for-enhanced-accessibility but rely on base characters.
+            Even when this option is used, it might be wise to ignore furigana-added-for-enhanced-accessibility but rely on base text.
           </p>
           <p>
             If furigana is assigned only for the first occurrence of a word, 
             there is a risk that the first occurrence and the others are read aloud differently.
           </p>
           <aside class="note" title="" id="n20211101002">
-            One way to avoid this problem is for the text-to-speech engine to maintain a correspondence table between base characters and ruby.
+            One way to avoid this problem is for the text-to-speech engine to maintain a correspondence table between base text and its ruby annotation.
             <span class="todo">Note or in main text?</span>
           </aside>
         </section>
