@@ -62,8 +62,8 @@
         while a companion document (now in Japanese only) focuses on implementation issues.
       </p>
       <p>
-        Section 2 enumerates the roles ruby plays in relation to base characters. 
-        Section 3 describes possible options for using base characters and/or ruby for the text-to-speech and discusses 
+        Section 2 enumerates the roles of ruby annotation play in relation to its base text. 
+        Section 3 describes possible options for using base text and/or ruby annotation for the text-to-speech and discusses 
         the pros and cons of each option. 
         Section 4 shows ruby markup issues around the text-to-speech. 
         Section 5 introduces alternative mechanisms (SSML and PLS). 
@@ -73,36 +73,36 @@
     </section>
 
     <section>
-      <h2>Roles of Ruby</h2>
+      <h2>Roles of Ruby annotation</h2>
 
       <section>
         <h3>Furigana</h3>
         <p>
-          The primary use of ruby is to indicate how to read CJK ideographic characters 
+          The primary use of ruby annotation is to indicate how to read CJK ideographic characters 
           (<dfn>furigana</dfn>, see also <a data-cite="JLREQ#term.furigana">JLReq terminology</a>).
         </p>
         <p>
-          Nowadays, it is not common to attach ruby to all CJK ideographic characters 
+          Nowadays, it is not common to attach ruby annotations to every CJK ideographic characters 
           (<dfn>general ruby</dfn>, see also <a data-cite="JLREQ#term.general-ruby">JLReq terminology</a>).
-          Ruby is typically attached to difficult CJK ideographic characters only 
+          Ruby annotations are typically attached to difficult CJK ideographic characters only 
           (<dfn>para ruby</dfn>, see also <a data-cite="JLREQ#term.para-ruby">JLReq terminology</a>).
         </p>
         <p>
           Ruby is used in trade books, newspapers, textbooks, teaching materials, etc., but is rarely used in business documents.
         </p>
         <p>
-          Even for simple CJK ideographic characters, ruby may be added for some users who have particular 
+          Even for simple CJK ideographic characters, ruby annotations may be added for some users who have particular 
           difficulties with CJK ideographic characters 
-          (in electronic documents, it is easy to make ruby visible or invisible based on user preferences). 
-          Such ruby is called furigana-added-for-enhanced-accessibility.
+          (in electronic documents, it is easy to make ruby annotations visible or invisible based on user preferences). 
+          Such ruby annotations are called as furigana-added-for-enhanced-accessibility.
         </p>
         <p>
-          Some simple CJK ideographic characters have more than one possible reading and thus require ruby for disambiguation.  
+          Some simple CJK ideographic characters have more than one possible reading and thus require ruby annotations for disambiguation.  
           This is common for names of people and places. For example, "<span lang="ja">山崎</span>" (a person's name) may be read as 
           "Yamazaki" or "Yamasaki". 
         </p>
         <p>
-          In the case of para ruby, ruby is often attached to the first occurrence of a CJK ideographic character, 
+          In the case of para ruby, ruby annotation is often attached to the first occurrence of each CJK ideographic character, 
           and not attached to the second and subsequent occurrences of the same character, 
           probably because users should learn from the first occurrence.
         </p>
@@ -111,7 +111,7 @@
       <section>
         <h3>Gikun</h3>
         <p>
-          Especially in Japan, ruby is also used for indicating something different from the reading of a CJK ideographic character.
+          Especially in Japan, ruby annotation is also used for indicating something different from the reading of a CJK ideographic character.
           Such ruby is called <dfn>Gikun</dfn>.  Gikun tends to be used in light novels and comics. 
         </p>
         <p>
@@ -167,14 +167,14 @@
           which is totally different from the Japanese language.
         </p>
         <p>
-          In many cases, the first occurrence of an unusual name is accompanied by ruby but the other occurrences are not.
+          In many cases, the first occurrence of an unusual name is accompanied by ruby annotation but the other occurrences are not.
         </p>
       </section>
 
       <section>
         <h3>Interlinear notes</h3>
         <p>
-          <dfn>Interlinear notes</dfn> look similar to ruby.  
+          <dfn>Interlinear notes</dfn> look similar to ruby annotations.  
           A <a data-cite="JLREQ#n224">note in JLreq</a> introduces interlinear notes:
         </p>
         <aside class="note" title="Quoted note from JLReq" id="n20211101001">
@@ -201,35 +201,35 @@
       </section>
 
       <section>
-        <h3>Ruby to indicate the reading of a foreign phrase in language textbooks</h3>
+        <h3>Ruby annotation to indicate the reading of a foreign phrase in language textbooks</h3>
         <p>
-          In language textbooks, ruby is sometimes used to indicate the reading of a foreign phrase in hiragana or katakana. 
-          For example, a Chinese phrase <span lang="zh-hans">我去学校</span> may have <span lang="ja">ウオ チュー シュエシャオ</span> as ruby.
+          In language textbooks, ruby annotation is sometimes used to indicate the reading of a foreign phrase in hiragana or katakana. 
+          For example, a Chinese phrase <span lang="zh-hans">我去学校</span> may have <span lang="ja">ウオ チュー シュエシャオ</span> as ruby annotation.
         </p>
       </section>
 
       <section>
         <h3>Double-sided Ruby</h3>
         <p>
-          A sequence of base characters may be accompanied by two ruby text chunks. 
+          A sequence of base characters may be accompanied by two ruby annotations. 
           Typically, one of them is [=Furigana=] and the other is either a [=GIKUN=] or [=interlinear note=].  
           In <a data-cite="JLREQ#fig2_3_12">an example in JLreq</a> 
           ("An example of ruby attached to both sides of the base characters"), 
           <span lang="ja">東南</span> is accompanied by <span lang="ja">たつみ</span> and <span lang="ja">とうなん</span>. 
-          Here <span lang="ja">東南</span> means "southeast", <span lang="ja">とうなん</span> (TOUNAN) is a furigana, 
+          Here <span lang="ja">東南</span> means "southeast", <span lang="ja">とうなん</span> (TOUNAN) is a [=furigana=], 
           and <span lang="ja">たつみ</span> (Tatsumi) is a [=GIKUN=], 
           since <span lang="ja">辰巳</span> (read as <span lang="ja">たつみ</span>) means the same direction as <span lang="ja">東南</span>.
         </p>
         <figure id="f20211101001">
           <img src="./img/rdr001.svg" alt="Double-sided ruby example 1" width="65" height="54" />
-          <figcaption><span lang="ja">東洋</span> has upper-side ruby <span lang="ja">オリエント</span> and lower-side ruby <span lang="ja">とうよう</span></figcaption>
+          <figcaption><span lang="ja">東洋</span> has upper-side ruby annotation <span lang="ja">オリエント</span> and lower-side ruby annotation <span lang="ja">とうよう</span></figcaption>
         </figure>
         <p>
           Here <span lang="ja">とうよう</span> is a [=furigana=] and <span lang="ja">オリエント</span> is a [=Gikun=].
         </p>
         <figure id="f20211101002">
           <img src="./img/rdr002.svg" alt="Double-sided ruby example 2" width="110" height="53" />
-          <figcaption><span lang="ja">織田信長</span> has upper-side ruby "1534〜82" and lower-side ruby <span lang="ja">おだのぶなが</span></figcaption>
+          <figcaption><span lang="ja">織田信長</span> has upper-side ruby annotation <span lang="ja">"1534〜82"</span> and lower-side ruby annotation <span lang="ja">おだのぶなが</span></figcaption>
         </figure>
         <p>
           Here <span lang="ja">おだのぶなが</span> is a [=furigana=] and "1534-82" is an [=interlinear note=].
@@ -238,15 +238,15 @@
     </section>
     
     <section>
-      <h2>Which should be read aloud, base characters or ruby, or both?</h2>
+      <h2>Which should be read aloud, base text or ruby annotation, or both?</h2>
       <p>
-        There are three possible options: (1) both base characters and ruby, (2) ruby only, and (3) base characters only.
+        There are three possible options: (1) both base text and ruby annotation, (2) ruby annotation only, and (3) base text only.
       </p>
 
       <section>
-        <h3>Reading aloud both base characters and ruby</h3>
+        <h3>Reading aloud both base text and ruby annoation</h3>
         <p>
-          In this option, base characters are read aloud first and ruby is then read aloud. 
+          In this option, base text are read aloud first and ruby annotation is then read aloud. 
           Many implementations (screen readers, in particular) support this option only. 
           For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "foo bar".
         </p>
@@ -260,8 +260,8 @@
           </p>
           <p>
             Consider an example from "The Rich Man and the Chicken" by <span lang="ja">小川未明</span> (OGAWA Mimei). 
-            Note that the mono ruby for <span lang="ja">新鮮</span> is expressed by two rt elements: 
-            one for <span lang="ja">新</span> and the other is for <span lang="ja">鮮</span>.
+            Note that the mono ruby for <span lang="ja">新鮮</span> is expressed by two rt (ruby annotation) elements: 
+            one ruby annotation for <span lang="ja">新</span> and the other ruby annotation is for <span lang="ja">鮮</span>.
           </p>
           <section>
             <h5>Original text</h5>
@@ -272,7 +272,7 @@
               <ruby>食<rt>た</rt></ruby>べようと<ruby>思<rt>おも</rt></ruby>いました。
             </p>
             <p>
-              If there is no ruby, this should be read aloud as:<br/> 
+              If there is no ruby annotation, this should be read aloud as:<br/> 
               <span lang="ja">にわとりでもかって、しんせんなたまごをうましてたべようとおもいました。</span>
               (Niwatori demo katte shinsenna tamagowo umashite tabeyouto omoimashita.)
             </p>
@@ -332,7 +332,7 @@
         </section>
 
         <section>
-          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <h4>Ruby annotation to indicate the reading of a foreign phrase in language books</h4>
           <p>
             The option of reading aloud both interferes with readers' understanding significantly.
           </p>
@@ -347,25 +347,25 @@
         <section>
           <h4>Double-sided ruby</h4>
           <p>
-            Since there are two ruby text chunks, double-sided ruby leads to reading aloud three times. 
-            One of the ruby text chunks is typically furigana, so the description in 1) applies. 
-            If the other ruby text chunk is a Gikun, the description in 2) applies; 
+            Since there are two chunks of ruby annotation, double-sided ruby leads to reading aloud three times. 
+            One of the ruby annotations is typically furigana, so the description in 1) applies. 
+            If the other ruby annotation is a Gikun, the description in 2) applies; 
             if it is an interlinear note, the description in 4) applies.
           </p>
         </section>
       </section>
 
       <section>
-        <h3>Reading aloud ruby only</h3>
+        <h3>Reading aloud ruby annotation only</h3>
         <p>
-          In this option, ruby is read aloud but base characters are not. 
+          In this option, ruby annotation is read aloud but base text is not. 
           For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "bar".
         </p>
 
         <section>
           <h4>Furigana</h4>
           <p>
-            The option of reading aloud ruby only provides not-incorrect-but-unnatural results usually. 
+            The option of reading aloud ruby annotation only provides not-incorrect-but-unnatural results usually. 
             In some cases, it causes mistakes in deciding whether <span lang="ja">へ</span> should be read aloud 
             as <span lang="ja">え</span> (/e/) or <span lang="ja">へ</span> (/he/) and 
             whether <span lang="ja">は</span> should be read aloud as <span lang="ja">わ</span> (/wa/) or <span lang="ja">は</span> (/ha/). 
@@ -373,18 +373,18 @@
             for compound words cannot be used, as kana characters are used instead of CJK ideographic characters.
             As an example, consider <span lang="ja">今後は<ruby><rb>発展</rb><rt>はってん</rt></ruby></span>. 
             T2S of <span lang="ja">今後は発展</span> typically works fine but that of <span lang="ja">今後ははってん</span> does not. 
-            The first occurrence of は should be read aloud as <span lang="ja">わ</span> (/wa/) 
+            The first occurrence of <span lang="ja">は</span> should be read aloud as <span lang="ja">わ</span> (/wa/) 
             but is mistakenly read aloud as <span lang="ja">は</span> (/ha/).
           </p>
           <p>
-            Even when this option is used, it might be wise to ignore furigana-added-for-enhanced-accessibility but rely on base characters.
+            Even when this option is used, it might be wise to ignore furigana-added-for-enhanced-accessibility but rely on base text.
           </p>
           <p>
             If furigana is assigned only for the first occurrence of a word, 
             there is a risk that the first occurrence and the others are read aloud differently.
           </p>
           <aside class="note" title="" id="n20211101002">
-            One way to avoid this problem is for the text-to-speech engine to maintain a correspondence table between base characters and ruby.
+            One way to avoid this problem is for the text-to-speech engine to maintain a correspondence table between base text and its ruby annotation.
             <span class="todo">Note or in main text?</span>
           </aside>
         </section>
@@ -392,7 +392,7 @@
         <section>
           <h4>Gikun</h4>
           <p>
-            The option of reading aloud ruby only provides an understandable result but does not properly convey the author's intention.
+            The option of reading aloud ruby annotation only provides an understandable result but does not properly convey the author's intention.
           </p>
           <p>
             <span lang="ja"><ruby><rb>生命</rb><rt>いのち</rt></ruby></span> will be read aloud as <span lang="ja">いのち</span> ("inochi").
@@ -402,14 +402,14 @@
         <section>
           <h4>Unusual names of people and places</h4>
           <p>
-            The option of reading aloud ruby only works correctly. 
-            However, if the first occurrence of a name is accompanied by ruby and the other occurrences are not, 
+            The option of reading aloud ruby annotation only works correctly. 
+            However, if the first occurrence of a name is accompanied by ruby annotation and the other occurrences are not, 
             the first occurrence is read aloud differently from the others thus suggesting different persons or places.
           </p>
           <p>
             For example, <span lang="ja"><ruby><rb>不死川玄弥</rb><rt>しなずがわげんや</rt></ruby></span> 
             is read aloud as Shinazugawa Genya correctly. 
-            But later occurrences of <span lang="ja">不死川玄弥</span> are read aloud as Fushikawa Genya if they do not have ruby.
+            But later occurrences of <span lang="ja">不死川玄弥</span> are read aloud as Fushikawa Genya if they do not have ruby annotation.
           </p>
           <aside class="note" title="" id="n20211101003">
             A workaround is available as described in the note in 1).
@@ -420,20 +420,20 @@
         <section>
           <h4>Interlinear notes</h4>
           <p>
-            The option of reading aloud ruby provides incomprehensible results often.
+            The option of reading aloud ruby annotation only provides incomprehensible results often.
           </p>
           <p>
-            If <span lang="ja">"1837-1913 江戸幕府最後の将軍"</span> is attached to <span lang="ja">徳川慶喜</span> as ruby, 
+            If <span lang="ja">"1837-1913 江戸幕府最後の将軍"</span> is attached to <span lang="ja">徳川慶喜</span> as ruby annotation, 
             it will be read aloud as <span lang="ja">"1837-1913 エドバクフサイゴノショウグン"</span> 
             (1837-1913 the last shogun of the Edo shogunate), which is reasonable.
-            But if only "1837-1913" is attached as ruby, the result is "1837-1913" which does not make any sense.
+            But if only "1837-1913" is attached as ruby annotation, the result is "1837-1913" which does not make any sense.
           </p>
         </section>
 
         <section>
-          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <h4>Ruby annotation to indicate the reading of a foreign phrase in language books</h4>
           <p>
-            The option of reading aloud ruby only interferes with readers' understanding significantly.
+            The option of reading aloud ruby annotation only interferes with readers' understanding significantly.
           </p>
           <p>
             In the example of <span lang="zh-hans">我去学校</span> (<span lang="ja">ウオ チュー シュエシャオ</span>), 
@@ -446,29 +446,29 @@
         <section>
           <h4>Double-sided ruby</h4>
           <p>
-            The option of reading aloud ruby only makes two ruby text chunks be read aloud while ignoring base characters. 
-            Since one of the ruby text chunks is typically furigana, the description in 1) applies. 
-            If the other ruby text chunk is a Gikun, the description in 2) applies; 
+            The option of reading aloud ruby annotation only makes two chunks of ruby annotation be read aloud while ignoring their base text. 
+            Since one of the ruby annotation is typically furigana, the description in 1) applies. 
+            If the other ruby annotation is a Gikun, the description in 2) applies; 
             if it is an interlinear note, the description in 4) applies.
           </p>
         </section>
       </section>
 
       <section>
-        <h3>Reading aloud base characters only</h3>
+        <h3>Reading aloud base text only</h3>
         <p>
-          In this option, base characters are read aloud but ruby is not. 
+          In this option, base text are read aloud but ruby annotation is not. 
           For example, <ruby><rb>foo</rb><rt>bar</rt></ruby> is read aloud as "foo".
         </p>
         <aside class="note" title="" id="n20211101004">
-          This option does not necessarily ignore ruby. 
-          Although text-to-speech engines mainly use base characters, they may also use ruby as a hint.
+          This option does not necessarily ignore ruby annotation. 
+          Although text-to-speech engines mainly use base text, they may also use ruby annotation as a hint.
         </aside>
 
         <section>
           <h4>Furigana</h4>
           <p>
-            The option of reading aloud base characters only may or may not provide good results, depending on text-to-speech engines.
+            The option of reading aloud base text only may or may not provide good results, depending on text-to-speech engines.
           </p>
           <p>
             The following is a quote from [[?ACCESSIBLE_E_BOOKS]].
@@ -491,7 +491,7 @@
         <section>
           <h4>Gikun</h4>
           <p>
-            The option of reading aloud base characters only results in a perfectly understandable result. 
+            The option of reading aloud base text only results in a perfectly understandable result. 
             However, since gikun is ignored, the author's intent is not completely conveyed.
           </p>
           <p>
@@ -502,19 +502,19 @@
         <section>
           <h4>Unusual names of people and places</h4>
           <p>
-            The option of reading base characters only leads to incorrect results. 
+            The option of reading base text only leads to incorrect results. 
             However, since every occurrence of a name is read aloud in the same way, users will not be confused.
           </p>
           <p>
             Every occurrence <span lang="ja"><ruby><rb>不死川 玄弥</rb><rt>しなずがわ　げんや</rt></ruby></span> 
-            will always be incorrectly read aloud as <span lang="ja">ふしかわ げんや</span>, regardless of the presence or absence of ruby.
+            will always be incorrectly read aloud as <span lang="ja">ふしかわ げんや</span>, regardless of the presence or absence of ruby annotation.
           </p>
         </section>
 
         <section>
           <h4>Interlinear notes</h4>
           <p>
-            The option of reading base characters only provides a perfectly understandable result. 
+            The option of reading base text only provides a perfectly understandable result. 
             However, since interline notes are ignored, the author's intention is not conveyed well.
           </p>
           <p>
@@ -525,10 +525,10 @@
         </section>
 
         <section>
-          <h4>Ruby to indicate the reading of a foreign phrase in language books</h4>
+          <h4>Ruby annotation to indicate the reading of a foreign phrase in language books</h4>
           <p>
-            The option of reading base characters only is most appropriate when natural languages are correctly identified 
-            and base characters are read aloud by a text-to-speech engine in that language. 
+            The option of reading base text only is most appropriate when natural languages are correctly identified 
+            and base text are read aloud by a text-to-speech engine in that language. 
             On the other hand, if the natural language cannot be identified or the text-to-speech engine for that language is not available, 
             the result is not understandable.        
           </p>
@@ -537,8 +537,8 @@
         <section>
           <h4>Double-sided ruby</h4>
           <p>
-            The option of reading base characters only will ignore the two ruby text chunks and read the base characters. 
-            When one of the ruby text chunks is furigana, the description in 1) applies. 
+            The option of reading base text only will ignore the two chunks of ruby annotation and read their base text only. 
+            When one of the ruby annotation is furigana, the description in 1) applies. 
             If the other is a gikun, the description in 2) applies, and if it is an interlinear note, the description in 4) applies.
           </p>
         </section>
@@ -552,35 +552,35 @@
         <h3>Conversion from small kana characters to full-size kana characters</h3>
         <p>
           Small kana characters <span lang="ja">ゃ</span>, <span lang="ja">ゅ</span>, <span lang="ja">ょ</span>, and 
-          <span lang="ja">っ</span> are too small when they appear in ruby. 
+          <span lang="ja">っ</span> are too small when they appear in ruby annotation. 
           For this reason, instead of these small characters, full-size kana characters <span lang="ja">や</span>, 
-          <span lang="ja">ゆ</span>, <span lang="ja">よ</span>, and <span lang="ja">つ</span> are used in ruby.      
+          <span lang="ja">ゆ</span>, <span lang="ja">よ</span>, and <span lang="ja">つ</span> are used in ruby annotation.
         </p>
         <p>
           However, since full-size kana characters are pronounced differently from small kana, 
-          ruby containing full-size kana is read aloud differently.
+          ruby annotation containing full-size kana is read aloud differently.
         </p>
         <p>
           CSS has a mechanism for overcoming this problem. 
           Value '<a data-cite="css-text-3" data-xref-type="css-value" data-xref-for="text-transform">full-size-kana</a>' of 
           the <a data-cite="css-text-3" data-xref-type="css-property">text-transform</a> property as specified in CSS Text converts 
           small kana characters to full-size kana. 
-          It is thus possible to use small kana in ruby markup while rendering ruby using full-size kana. 
-          Text-to-speech engines can provide correct results even when ruby is read aloud.
+          It is thus possible to use small kana in ruby annotation while rendering ruby annotation using full-size kana. 
+          Text-to-speech engines can provide correct results even when ruby annotation is read aloud.
         </p>
       </section>
 
       <section>
-        <h3>A single ruby element or multiple ruby elements per compound word</h3>
+        <h3>A single ruby element or multiple ruby elements per one compound word</h3>
         <p>
           Okayama-san of Hitach has argued that, even in the case of mono ruby, 
-          creating a single ruby element per compound word is better than creating a ruby element for each base character in a compound word. 
-          For example, to attach mono ruby to <span lang="ja">生命</span>, he recommends a single ruby element and two rt elements: 
+          creating a single ruby element per compound word is better than creating a ruby element for each character of base text in a compound word. 
+          For example, to attach mono ruby to <span lang="ja">生命</span>, he recommends a single ruby element and two sets of rb and rt elements: 
           one for <span lang="ja">生</span> and another for <span lang="ja">命</span> rather than creating two ruby elements.
         </p>
         <p>
           A single ruby element per compound word can be rendered as mono ruby or jukugo ruby by CSS. 
-          Moreover, it is also easy for the text-to-speech engine to maintain a correspondence table between base characters and ruby.
+          Moreover, it is also easy for the text-to-speech engine to maintain a correspondence table between base text and ruby annotation.
         </p>
       </section>
 
@@ -596,10 +596,10 @@
       </section>
 
       <section>
-        <h3>Markup for indicating ruby used as gikun or interlinear note</h3>
+        <h3>Markup for indicating ruby annotation used as gikun or interlinear note</h3>
         <p>
-          In Section 3, we have seen that ruby used as gikun or interline notes should be read aloud differently from the other cases. 
-          It is thus necessary to standardize a markup mechanism for clearly indicating ruby used as gikun or interlinear note.
+          In Section 3, we have seen that ruby annotation used as gikun or interline notes should be read aloud differently from the other cases. 
+          It is thus necessary to standardize a markup mechanism for clearly indicating ruby annotation used as gikun or interlinear note.
         </p>
       </section>
     </section>
@@ -664,8 +664,8 @@
       </p>
       <p>
         For furigana and unusual names of people and places, natural language processing will work better 
-        when CJK ideographic characters are used as a basis, while correct reading will be chosen when ruby is used as a basis. 
-        It is even possible to use both parent characters and ruby.
+        when CJK ideographic characters are used as a basis, while correct reading will be chosen when ruby annotation is used as a basis. 
+        It is even possible to use both base text and ruby annotation.
       </p>
     </section>
 
@@ -675,7 +675,7 @@
       <section>
         <h3>OOXML</h3>
         <p>
-          Microsoft Word reads aloud neither base characters nor ruby. Therefore, text-to-speech does not work when ruby is used.
+          Microsoft Word reads aloud neither base text nor ruby annotation. Therefore, text-to-speech does not work when ruby is used.
         </p>
       </section>
 
@@ -683,11 +683,11 @@
         <h3>PDF</h3>
         <p>
           Ruby in PDF documents is represented as separate lines containing tiny characters. 
-          The relationship between base characters and ruby is not explicitly represented.
+          The relationship between base text and ruby annotation is not explicitly represented.
         </p>
         <p>
-          Some implementations read aloud the ruby line first and then read the original line, which contains base characters. 
-          Such implementations provide incomprehensible results.  Other implementations simply ignore ruby lines. 
+          Some implementations read aloud a line for ruby annotations first and then read corresponding original line, which contains base text. 
+          Such implementations provide incomprehensible results.  Other implementations simply ignore lines for ruby annotation. 
           Subsection 3.3 applies to these implementations.
         </p>
       </section>
