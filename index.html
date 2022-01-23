@@ -56,7 +56,19 @@
             publisher: "W3C",
             date: "08 May 2019",
           },
-        },
+	  JEITA_IT-4002: {
+	      title: "Symbols for Japanese Text-to-Speech Synthesizer",
+	      id:  "JEITA IT-4002",
+	      date: "May 2005",
+	      publisher: "Japan Electronics and Information Technology Industries Association",
+	  },
+	  JEITA_IT-4006: {
+	      title: "Symbols for Japanese Text-to-Speech Synthesizer",
+	      id:  "JEITA IT-4006",
+	      date: "March 2010",
+	      publisher: "Japan Electronics and Information Technology Industries Association",
+	  },
+	},
         xref: true,
         postProcess: [  ],
       };
@@ -628,31 +640,61 @@
     <section>
       <h2>Alternatives to ruby</h2>
 
+      <p>[[?SSML]] and [[?PRONUNCIATION-LEXICON]] can be used for
+      providing phonemic/phonetic pronunciation of CJK ideographic
+      characters to speech synthesis engines.  They are not for visual
+      presentations but can control text-to-speech much better than
+      ruby.</p>
+      
       <section>
         <h3>SSML</h3>
         <p>
-          In EPUB publications, [[?SSML]] attributes can be attached to XHTML elements for specifying phonemic/phonetic pronunciations. 
-          [[?SSML]] attributes are used by text-to-speech engines for speech synthesis but they are not used for visual rendering. 
-          [[?SSML]] can control text-to-speech much better than ruby.
+	  [[?SSML]] uses symbol collections (such as IPA and
+	  [[?JEITA_IT-4006]]) to represent the sounds of human languages.
+	  Phonemic/phonetic pronunciation is represented by sequences
+	  of such symbols.
+        </p>  
+        <p>
+	  [[?epub-32]] allows SSML attributes to be used within XHTML content
+	  documents in EPUB publications.  In the upcoming version,
+	  [[?epub-33]], these attributes are moved to [[?epub-tts-10]].
+	  Meanwhile, the W3C Accessible Platform Architectures Working
+	  Group is developing [[?spoken-html]], which describes
+	  two possible approaches for adding SSML attributes to HTML elements.
         </p>
         <p>
-          However, it has been reported that attaching [[?SSML]] to CJK ideographic characters thoroughly significantly 
-          increases the authoring cost. 
-          Although [[?SSML]] has been used by some textbook publishers in Japan, it is unlikely to be widely used for trade books.      
+	  SSML is widely used for digital textbooks by more than
+          one textbook publisher in Japan.  Meanwhile, it has been
+          reported that attaching SSML attributes to CJK
+          ideographic characters significantly increases the authoring
+          cost.  DAISY textbooks in Japan do not use SSML, since they
+          include recorded voice.  Trade books in Japan do not use
+          SSML either.
         </p>
       </section>
 
       <section>
         <h3>PLS</h3>
+	<p>PLS ([[PRONUNCIATION-LEXICON]]) allows for pronunciation lexicons, which maps words to
+	  sequences of symbol collections such as those in IPA or
+	  [[?JEITA_IT-4006]].
+	  </p>
         <p>
-          While [[?SSML]] attributes are embedded within [[?XHTML2]] content documents in EPUB publications, 
-          PLS dictionaries (see [[?PRONUNCIATION-LEXICON]]) in EPUB publications are stored externally 
-          to and referenced by XHTML content documents (see <a data-cite="epub-tts-10#pls">Pronunciation Lexicons section</a> in [[?epub-tts-10]]). 
-          A PLS dictionary contains a collection of words or phrases containing pronunciation information.
+          While [[?SSML]] attributes are embedded within XHTML content
+          documents in EPUB publications, PLS dictionaries (see
+          [[?PRONUNCIATION-LEXICON]]) in EPUB publications are stored
+          externally to and referenced by XHTML content documents
+          (see <a data-cite="epub-tts-10#pls">Pronunciation Lexicons
+          section</a> in [[?epub-tts-10]]).  As of now,
+          [[spoken-html]] does not have a mechanism for associationg
+          PLS lexicons to HTML documents.
         </p>
         <p>
-          PLS is a powerful mechanism for the text-to-speech of unusual names of people and places.  
-          Every occurrence of a word or phrase is read aloud in the same way regardless of ruby.
+          PLS is a powerful mechanism for the text-to-speech of
+	  unusual names of people and places.  In particular, every
+	  occurrence of a word or phrase is read aloud in the same way
+	  regardless of the existence of ruby.  As of this writing, PLS is
+	  used by at least one digital textbook publisher in Japan.
         </p>
       </section>
     </section>
