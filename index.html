@@ -56,7 +56,19 @@
             publisher: "W3C",
             date: "08 May 2019",
           },
-        },
+	  JEITA_IT-4002: {
+	      title: "Symbols for Japanese Text-to-Speech Synthesizer",
+	      id:  "JEITA IT-4002",
+	      date: "May 2005",
+	      publisher: "Japan Electronics and Information Technology Industries Association",
+	  },
+	  JEITA_IT-4006: {
+	      title: "Symbols for Japanese Text-to-Speech Synthesizer",
+	      id:  "JEITA IT-4006",
+	      date: "March 2010",
+	      publisher: "Japan Electronics and Information Technology Industries Association",
+	  },
+	},
         xref: true,
         postProcess: [  ],
       };
@@ -637,23 +649,23 @@
       <section>
         <h3>SSML</h3>
         <p>
-	  [[?SSML]] uses symbol collections (such as IPA and JEITA
-	  IT-4006) to represent the sounds of human languages.
+	  [[?SSML]] uses symbol collections (such as IPA and
+	  [[?JEITA_IT-4006]]) to represent the sounds of human languages.
 	  Phonemic/phonetic pronunciation is represented by sequences
 	  of such symbols.
         </p>  
         <p>
-	  EPUB 3 allows SSML attributes to be used within XHTML content
+	  [[?epub-32]] allows SSML attributes to be used within XHTML content
 	  documents in EPUB publications.  In the upcoming version,
-	  EPUB 3.3, these attributes are moved to [[epub-tts-10]].
+	  [[?epub-33]], these attributes are moved to [[?epub-tts-10]].
 	  Meanwhile, the W3C Accessible Platform Architectures Working
-	  Group is developing [[spoken-html]].  [[spoken-html]] describes
+	  Group is developing [[?spoken-html]], which describes
 	  two possible approaches for adding SSML attributes to HTML elements.
         </p>
         <p>
-	  [[?SSML]] is widely used for digital textbooks by more than
+	  SSML is widely used for digital textbooks by more than
           one textbook publisher in Japan.  Meanwhile, it has been
-          reported that attaching [[?SSML]] attributes to CJK
+          reported that attaching SSML attributes to CJK
           ideographic characters significantly increases the authoring
           cost.  DAISY textbooks in Japan do not use SSML, since they
           include recorded voice.  Trade books in Japan do not use
@@ -665,7 +677,7 @@
         <h3>PLS</h3>
 	<p>PLS ([[PRONUNCIATION-LEXICON]]) allows for pronunciation lexicons, which maps words to
 	  sequences of symbol collections such as those in IPA or
-	  JEITA IT-4006.
+	  [[?JEITA_IT-4006]].
 	  </p>
         <p>
           While [[?SSML]] attributes are embedded within XHTML content
