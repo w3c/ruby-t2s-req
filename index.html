@@ -713,33 +713,49 @@
     <section>
       <h2>Use of Ruby for Automatic Braille Translation</h2>
       <p>
-        Conversion of HTML documents and EPUB publications to braille is expected to become important in the near future.
+	The conversion of HTML documents and EPUB publications to
+	braille is expected to become increasingly important in the
+	near future.
       </p>
       <p>
-        Japanese braille does not have CJK ideographic characters and does not distinguish hiragana and katakana. 
-        (Note: Han braille has CJK ideographic characters, but it is not widely used.)
+	Japanese braille lacks CJK ideographic characters and does not
+	distinguish between hiragana and katakana. (Note: Han braille
+	in Japan does include CJK ideographic characters, but it is
+	not widely used.)
       </p>
       <p>
-        Braille has some syntactical differences from the Japanese writing system. 
-        First, the space character is inserted as delimiters between words. 
-        Second, two Japanese particles <span lang="ja">は</span> and <span lang="ja">へ</span> are written as they are pronounced; 
-        that is, <span lang="ja">は</span> and <span lang="ja">へ</span> are represented 
-        as if they were <span lang="ja">わ</span> and <span lang="ja">え</span>. 
-        Third, <span lang="ja">う</span> pronounced as the elongated sound is represented by the long vowel character.
+	Braille exhibits some syntactical differences from the
+	Japanese writing system. First, space characters are inserted
+	as delimiters between words. Second, two Japanese particles,
+	<span lang="ja">は</span> and <span lang="ja">へ</span>, are transcribed as they are pronounced, meaning
+	<span lang="ja">は</span> and <span lang="ja">へ</span> are represented as if they were
+	<span lang="ja">わ</span> and <span lang="ja">え</span>,
+	respectively. Third, <span lang="ja">う</span> pronounced as an elongated sound is
+	represented using the long vowel character. For example,
+	to tranlsate <span lang="ja">たいよう</span> to braille,
+	<span lang="ja">たいよう</span> is first converted to <span lang="ja">たいよー</span> and then translated to braille.
       </p>
       <p>
-        Natural language processing is required for handling these differences in the conversion to braille. 
-        But, unlike in the case of text-to-speech, intonation is not relevant. 
+	Natural language processing is required to handle these
+	differences during the conversion to braille. However, unlike
+	the case of text-to-speech, intonation is not relevant.
       </p>
       <p>
-        To convert HTML or EPUB to braille, it is crucial to choose the correct reading of each CJK ideographic character. 
-        If an incorrect reading is chosen, the generated braille becomes incorrect. 
-        As in the case of text-to-speech, ruby provides useful hints while [[?SSML]] and PLS are good alternatives.
+	When converting HTML or EPUB content to braille, it is
+	essential to select the correct reading for each CJK
+	ideographic character. Choosing an incorrect reading can
+	result in erroneous braille output. Similar to text-to-speech,
+	ruby provides valuable hints, while [[?SSML]] and [[?PLS]] serve as
+	effective alternatives.
       </p>
       <p>
-        For furigana and unusual names of people and places, natural language processing will work better 
-        when ruby bases (typially containing CJK ideographic characters) are used as a basis; meanwhile, correct reading will be chosen when ruby annotations are used as a basis. 
-        It is even possible to use both ruby bases and ruby annotations.
+	For furigana and the transcription of unusual names of people
+        and places, natural language processing is more effective when
+        using ruby bases (typically containing CJK ideographic
+        characters) as the foundation. In contrast, the correct
+        readings are chosen when using ruby annotations as the
+        basis. It is also possible to combine both ruby bases and ruby
+        annotations.
       </p>
     </section>
 
