@@ -106,9 +106,7 @@
 	text-to-speech of ruby annotations. Section 5 introduces
 	alternative mechanisms, such as SSML and PLS. Section 6 delves
 	into the use of ruby annotations in translating HTML or EPUB
-	content to braille. Lastly, in Section 7, we offer a concise
-	summary of the text-to-speech considerations for Word
-	documents and PDF documents containing ruby annotations.</p>
+	content to braille.</p>
     </section>
 
     <section>
@@ -759,29 +757,6 @@
       </p>
     </section>
 
-    <section>
-      <h2>Document formats other than HTML and EPUB</h2>
-
-      <section>
-        <h3>OOXML</h3>
-        <p>
-          Microsoft Word reads aloud neither ruby bases nor ruby annotations. Therefore, text-to-speech does not work when ruby is used.
-        </p>
-      </section>
-
-      <section>
-        <h3>PDF</h3>
-        <p>
-          Ruby annotations in PDF documents are represented as separate lines containing tiny characters. 
-          The relationship between ruby bases and ruby annotations is not explicitly represented.
-        </p>
-        <p>
-          Some implementations read aloud a line for ruby annotations first and then read corresponding original line, which contains ruby bases. 
-          Such implementations provide incomprehensible results.  Other implementations simply ignore lines for ruby annotations. 
-          Subsection 3.3 applies to these implementations.
-        </p>
-      </section>
-    </section>
 
   </body>
 </html>
